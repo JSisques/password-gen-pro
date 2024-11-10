@@ -9,9 +9,7 @@ interface CustomListProps {
 
 const CustomList = ({ items, className }: CustomListProps) => {
   const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Texto copiado al portapapeles!");
-    });
+    navigator.clipboard.writeText(text);
   };
 
   return (
@@ -26,12 +24,18 @@ const CustomList = ({ items, className }: CustomListProps) => {
       </ul>
       {items.map((item, index) => (
         <div key={index} className="py-2">
-          <li className="flex items-center justify-between transition bg-white dark:bg-gray-700 rounded-lg p-2 hover:shadow-lg">
-            <span className="mr-2 text-gray-700 dark:text-gray-300 font-semibold">
+          <li
+            onClick={() => copyToClipboard(item.text)}
+            className="flex items-center justify-between transition bg-white dark:bg-gray-700 rounded-lg p-2 hover:shadow-lg cursor-pointer"
+          >
+            <span className="mr-2 text-gray-700 dark:text-gray-300 font-semibold overflow-x-auto whitespace-nowrap">
               {item.text}
             </span>
             <button
-              onClick={() => copyToClipboard(item.text)}
+              onClick={(e) => {
+                e.stopPropagation(); // Evita que el click en el botón copie el texto
+                copyToClipboard(item.text);
+              }}
               className="text-blue-500 hover:text-blue-700 transition"
               aria-label="Copiar al portapapeles"
             >

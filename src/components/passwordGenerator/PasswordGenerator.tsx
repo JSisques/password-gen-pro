@@ -40,24 +40,17 @@ const PasswordGenerator: React.FC<PasswordGeneratorProps> = ({
 
   return (
     <div className="flex flex-col h-full p-4 bg-gray-200 dark:bg-gray-800 rounded-lg shadow-md">
-      <input
-        type="text"
-        value={password}
-        readOnly
-        className="flex-grow mb-4 p-2 border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-200"
-        placeholder="Tu contraseña generada aparecerá aquí"
-      />
       <div className="mb-4">
         <label className="block mb-1 font-semibold text-gray-700 dark:text-gray-300">
           Longitud de la contraseña:
-          <input
-            type="number"
-            value={length}
-            onChange={(e) => setLength(parseInt(e.target.value))}
-            min="8"
-            className="ml-2 border rounded p-1 bg-white dark:bg-gray-700"
-          />
         </label>
+        <input
+          type="number"
+          value={length}
+          onChange={(e) => setLength(parseInt(e.target.value))}
+          min="8"
+          className="w-full border rounded p-1 bg-white dark:bg-gray-700"
+        />
       </div>
       {[
         {
